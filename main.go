@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-14 14:39:08
  * @LastEditors: liuruihao@huobi.com
- * @LastEditTime: 2020-08-14 17:01:31
+ * @LastEditTime: 2020-08-14 17:37:23
  * @FilePath: /tcpproxy/main.go
  */
 package main
@@ -35,10 +35,6 @@ func main() {
 	}
 	logging.SetupLogging(logconf)
 
-	// if *linkAddr == "" {
-	// 	log.Fatal("linkaddr is null")
-	// }
-
 	link, err := net.ResolveTCPAddr("tcp", *linkAddr)
 	if err != nil {
 		log.Fatal("linkAddr Resolve failed: ", err)
@@ -59,6 +55,7 @@ func main() {
 			log.Error("accept failed: ", err)
 			continue
 		}
+		log.Info("accept new connection: ", tcpConn.RemoteAddr().Network())
 		go NewChannel(link, tcpConn).Run()
 	}
 }
