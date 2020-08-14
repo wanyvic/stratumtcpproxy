@@ -11,7 +11,7 @@ import (
 	"encoding/json"
 	"net"
 
-	logging "github.com/ipfs/go-log"
+	logging "github.com/ipfs/go-log/v2"
 )
 
 type JsonRpcRequest struct {

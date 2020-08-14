@@ -1,8 +1,8 @@
 /*
  * @Date: 2020-08-14 14:39:08
  * @LastEditors: liuruihao@huobi.com
- * @LastEditTime: 2020-08-14 17:37:23
- * @FilePath: /tcpproxy/main.go
+ * @LastEditTime: 2020-08-14 18:40:01
+ * @FilePath: /stratumtcpproxy/main.go
  */
 package main
 
@@ -10,7 +10,7 @@ import (
 	"flag"
 	"net"
 
-	logging "github.com/ipfs/go-log"
+	logging "github.com/ipfs/go-log/v2"
 )
 
 var (
@@ -34,6 +34,14 @@ func main() {
 		logconf.Level = level
 	}
 	logging.SetupLogging(logconf)
+
+	if *linkAddr == "" {
+		log.Fatal("linkAddr is null")
+	}
+
+	if *bindAddr == "" {
+		log.Fatal("bindAddr is null")
+	}
 
 	link, err := net.ResolveTCPAddr("tcp", *linkAddr)
 	if err != nil {
