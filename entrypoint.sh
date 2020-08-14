@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-export PATH=$PATH:/work/btcpool/build
 
 # fix DNS issue
 # "Random case of domain name causes asynchronous DNS resolution of libevent2 to fail"
