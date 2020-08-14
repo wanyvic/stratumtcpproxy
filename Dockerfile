@@ -7,4 +7,8 @@ RUN cd /tmp/tcpproxy && go get . && go build
 FROM ubuntu:18.04
 LABEL maintainer="Ruihao Liu <liuruihao@huobi.com>"
 COPY --from=build /tmp/tcpproxy/stratumtcpproxy /usr/local/bin/proxy
-ENTRYPOINT ["proxy"]
+
+COPY ./entrypoint.sh ./wait-for-it.sh /
+
+# entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
